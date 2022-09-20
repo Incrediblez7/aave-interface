@@ -52,7 +52,6 @@ export const TxActionsWrapper = ({
       return { loading: false, disabled: true, content: actionText };
     if (txError && txError.txAction === TxAction.MAIN_ACTION && txError.actionBlocked)
       return { loading: false, disabled: true, content: actionText };
-    if (isWrongNetwork) return { disabled: true, content: <Trans>Wrong Network</Trans> };
     if (isAmountMissing) return { disabled: true, content: <Trans>Enter an amount</Trans> };
     if (preparingTransactions || isEmpty(mainTxState)) return { disabled: true, loading: true };
     // if (hasApprovalError && handleRetry)
@@ -67,7 +66,6 @@ export const TxActionsWrapper = ({
   function getApprovalParams() {
     if (
       !requiresApproval ||
-      isWrongNetwork ||
       isAmountMissing ||
       preparingTransactions ||
       hasApprovalError
